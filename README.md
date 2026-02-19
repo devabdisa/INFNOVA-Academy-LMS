@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# INFNOVA Academy - Online LMS Platform
 
-## Getting Started
+A premium, pixel-perfect Learning Management System built with **Next.js 15**, **TypeScript**, and **Tailwind CSS**. This project was developed as part of an internship technical assessment, focusing on high-fidelity design implementation and dynamic API integration.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Direct Entry**: Automatic landing page redirect to the Course List for immediate impact.
+- **Pixel-Perfect UI**: Strictly adheres to Figma specifications (1101px boxed layout).
+- **Dynamic Course Engine**: Real-time data fetching from a REST API with server-side rendering.
+- **Responsive Navigation**: Custom header with precise logo and action button dimensions.
+- **Detailed Course Views**: Dynamic routing (`/courses/[id]`) with specialized layouts for course content and instructor details.
+- **Optimized Performance**: Next.js Image optimization and tailored skeleton loading states.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Typography**: [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts)
+- **Icons/Assets**: Custom brand assets and Unsplash integration.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📸 Screenshots
 
-## Learn More
+### 1. Course List Page
 
-To learn more about Next.js, take a look at the following resources:
+_Boxed 1101px layout featuring our dynamic course grid._
+![Course List](<public/Screenshot%20(210).png>)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Course Detail Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+_Premium hero section with specialized sidebar and "What You'll Learn" grid._
+![Course Detail](public/CourseDetail.png)
 
-## Deploy on Vercel
+## 🏁 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1.  **Clone & Install**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    git clone [repository-url]
+    cd infnova-academy
+    pnpm install
+    ```
+
+2.  **Environment**:
+    The app uses the following base API: `https://infnova-course-api.vercel.app/api`. Ensure you have internet access for image and data fetching.
+
+3.  **Run Development**:
+
+    ```bash
+    pnpm dev
+    ```
+
+4.  **Build for Production**:
+    ```bash
+    pnpm build
+    pnpm start
+    ```
+
+## 📐 Design Specifications
+
+- **Canvas Width**: 1101px (Centered)
+- **Primary Color**: `#F54900` (INFNOVA Orange)
+- **Typography**: Inter (400, 500, 700)
+- **Components**: Box-shadowed cards, sticky navbars, and structured footers.
+
+---
+
+_Developed for **INFNOVA Technologies** Internship Assessment._
