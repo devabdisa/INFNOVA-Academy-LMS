@@ -5,9 +5,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCourseById } from "@/lib/api";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  try {
+    const course = await getCourseById(id);
+    return {
+      title: `${course.title} | INFNOVA Academy`,
+    };
+  } catch {
+    return {
+      title: "Course Not Found | INFNOVA Academy",
+    };
+  }
 }
 
 export default async function CourseDetailPage({ params }: PageProps) {
@@ -66,7 +83,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
             <div className="flex items-center gap-6 text-[14px] font-medium opacity-90">
               <div className="flex items-center gap-2">
                 <Image
-                  src="/Icon.png"
+                  src="/icon.png"
                   alt="check"
                   width={16}
                   height={16}
@@ -76,7 +93,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Image
-                  src="/Icon.png"
+                  src="/icon.png"
                   alt="check"
                   width={16}
                   height={16}
@@ -86,7 +103,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Image
-                  src="/Icon.png"
+                  src="/icon.png"
                   alt="check"
                   width={16}
                   height={16}
@@ -140,7 +157,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
                   key={i}
                   className="flex items-center gap-3 text-sm text-gray-700"
                 >
-                  <Image src="/Icon.png" alt="check" width={16} height={16} />
+                  <Image src="/icon.png" alt="check" width={16} height={16} />
                   {point}
                 </div>
               ))}

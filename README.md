@@ -24,12 +24,12 @@ A premium, pixel-perfect Learning Management System built with **Next.js 15**, *
 ### 1. Course List Page
 
 _Boxed 1101px layout featuring our dynamic course grid._
-![Course List](<public/Screenshot%20(210).png>)
+![Course List](public/courses-list.png)
 
 ### 2. Course Detail Page
 
 _Premium hero section with specialized sidebar and "What You'll Learn" grid._
-![Course Detail](public/CourseDetail.png)
+![Course Detail](public/course-detail.png)
 
 ## 🏁 Getting Started
 

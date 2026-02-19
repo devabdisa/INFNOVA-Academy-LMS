@@ -3,6 +3,11 @@ import CourseCard from "../_components/CourseCard";
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
 import { getCourses } from "@/lib/api";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Courses | INFNOVA Academy",
+};
 
 export default async function CoursesPage() {
   const courses = await getCourses();

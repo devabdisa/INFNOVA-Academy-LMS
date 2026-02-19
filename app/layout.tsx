@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "INFNOVA Academy",
   description:
     "Master new skills with expert-led courses designed for the modern learner.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
