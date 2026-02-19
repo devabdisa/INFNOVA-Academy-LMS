@@ -233,7 +233,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
                   key={i}
                   className="flex items-center gap-3 text-sm text-gray-600"
                 >
-                  <Image src="/Icon.png" alt="check" width={14} height={14} />
+                  <Image src="/icon.png" alt="check" width={14} height={14} />
                   {item}
                 </div>
               ))}
