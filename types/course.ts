@@ -1,25 +1,15 @@
-export interface Instructor {
-  id: string;
-  name: string;
-  avatar: string;
-  role?: string;
-  bio?: string;
-}
-
 export interface Course {
   id: string;
   title: string;
-  description?: string;
-  longDescription?: string;
+  instructor: string;
+  level: string;
+  duration: string;
   thumbnail: string;
-  category: string;
-  level: "Beginner" | "Intermediate" | "Advanced";
-  price?: number;
   rating: number;
-  studentCount: number;
-  durationInWeeks: number;
-  instructor: Instructor;
-  learningPoints?: string[];
+  enrolled: number;
+  category: string;
+  description?: string;
+  skills?: string[];
 }
 
 export type CourseCategory =

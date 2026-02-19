@@ -3,32 +3,23 @@ import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { Course } from "@/types/course";
+import { getCourseById } from "@/lib/api";
+import { notFound } from "next/navigation";
 
-// This would normally come from an API based on the ID
-const mockCourse: Course = {
-  id: "4",
-  title: "Cloud Engineering with AWS",
-  description:
-    "Learn how modern companies deploy and scale applications in the cloud. Build resilient infrastructure, automate deployments, and understand cost-efficient architecture.",
-  longDescription:
-    "Learn how modern companies deploy and scale applications in the cloud. Build resilient infrastructure, automate deployments, and understand cost-efficient architecture.\n\nThis comprehensive course is designed to provide you with practical, hands-on experience and real-world skills. You'll work on projects that simulate actual industry scenarios, giving you the confidence to apply your knowledge immediately.",
-  thumbnail: "/Image (Cloud Engineering with AWS).png",
-  category: "CLOUD COMPUTING",
-  level: "Intermediate",
-  rating: 4.6,
-  studentCount: 2015,
-  durationInWeeks: 9,
-  instructor: {
-    id: "4",
-    name: "Samuel Getachew",
-    avatar: "/instructor-sg.png",
-    bio: "Expert Cloud Computing professional with over 10 years of industry experience. Passionate about teaching and helping students achieve their career goals.",
-  },
-  learningPoints: ["AWS", "Docker", "CI/CD", "Infrastructure", "System Design"],
-};
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-export default function CourseDetailPage() {
+export default async function CourseDetailPage({ params }: PageProps) {
+  const { id } = await params;
+
+  let course;
+  try {
+    course = await getCourseById(id);
+  } catch (error) {
+    return notFound();
+  }
+
   return (
     <div className="mx-auto w-[1101px] min-h-screen bg-white border-x border-gray-100 font-inter">
       <Navbar />
@@ -62,13 +53,13 @@ export default function CourseDetailPage() {
           <div className="flex-1 flex flex-col justify-between">
             <div>
               <span className="inline-block text-[#FFD6A8] text-[14px] font-normal uppercase tracking-[0.2px] leading-[20px] mb-4">
-                {mockCourse.category}
+                {course.category}
               </span>
               <h1 className="text-[32px] font-bold leading-tight mb-2">
-                {mockCourse.title}
+                {course.title}
               </h1>
               <p className="text-[14px] opacity-90 max-w-[500px] line-clamp-3">
-                {mockCourse.description}
+                {course.description}
               </p>
             </div>
 
@@ -81,7 +72,7 @@ export default function CourseDetailPage() {
                   height={16}
                   className="brightness-0 invert"
                 />
-                Instructor: {mockCourse.instructor.name}
+                Instructor: {course.instructor}
               </div>
               <div className="flex items-center gap-2">
                 <Image
@@ -91,7 +82,7 @@ export default function CourseDetailPage() {
                   height={16}
                   className="brightness-0 invert"
                 />
-                {mockCourse.durationInWeeks} weeks
+                {course.duration}
               </div>
               <div className="flex items-center gap-2">
                 <Image
@@ -101,21 +92,22 @@ export default function CourseDetailPage() {
                   height={16}
                   className="brightness-0 invert"
                 />
-                {mockCourse.studentCount.toLocaleString()} enrolled
+                {course.enrolled.toLocaleString()} enrolled
               </div>
             </div>
 
             <div className="w-[150.87px] h-[32.5px] bg-[#DBEAFE] text-[#1E40AF] flex items-center justify-center rounded-full text-[14px] font-semibold">
-              {mockCourse.level} Level
+              {course.level} Level
             </div>
           </div>
 
           <div className="relative w-[324.34px] h-[215.68px] my-auto mr-8">
             <Image
-              src={mockCourse.thumbnail}
-              alt={mockCourse.title}
+              src={course.thumbnail}
+              alt={course.title}
               fill
               className="object-cover rounded-[10px]"
+              unoptimized={course.thumbnail.includes("unsplash")}
             />
           </div>
         </div>
@@ -143,7 +135,7 @@ export default function CourseDetailPage() {
               What You&apos;ll Learn
             </h2>
             <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-              {mockCourse.learningPoints?.map((point, i) => (
+              {course.skills?.map((point, i) => (
                 <div
                   key={i}
                   className="flex items-center gap-3 text-sm text-gray-700"
@@ -159,7 +151,7 @@ export default function CourseDetailPage() {
           <div className="bg-white rounded-[10px] p-8 border border-gray-100 shadow-sm">
             <h2 className="text-xl font-bold mb-6">Course Description</h2>
             <div className="space-y-4 text-gray-600 leading-relaxed text-[15px]">
-              {mockCourse.longDescription?.split("\n\n").map((paragraph, i) => (
+              {course.description?.split("\n\n").map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}
             </div>
@@ -170,14 +162,18 @@ export default function CourseDetailPage() {
             <h2 className="text-xl font-bold mb-6">Your Instructor</h2>
             <div className="flex items-start gap-6">
               <div className="h-[100px] w-[100px] rounded-full bg-orange-600 flex items-center justify-center text-white text-3xl font-bold">
-                SG
+                {course.instructor
+                  .split(" ")
+                  .map((n: string) => n[0])
+                  .join("")}
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {mockCourse.instructor.name}
+                  {course.instructor}
                 </h3>
                 <p className="text-gray-600 text-[15px] leading-relaxed">
-                  {mockCourse.instructor.bio}
+                  Expert professional with industry experience. Passionate about
+                  teaching and helping students achieve their career goals.
                 </p>
               </div>
             </div>
@@ -191,8 +187,7 @@ export default function CourseDetailPage() {
               Enroll Today
             </h3>
             <p className="text-sm text-gray-500 font-inter">
-              Join {mockCourse.studentCount.toLocaleString()} students already
-              enrolled
+              Join {course.enrolled.toLocaleString()} students already enrolled
             </p>
           </div>
 
@@ -211,7 +206,7 @@ export default function CourseDetailPage() {
             </h4>
             <div className="space-y-3">
               {[
-                "9 weeks of content",
+                `${course.duration} of content`,
                 "Lifetime access",
                 "Certificate of completion",
                 "Access on mobile and desktop",

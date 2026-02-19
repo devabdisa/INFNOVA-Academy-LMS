@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { Course } from "@/types/course";
 
 interface CourseCardProps {
@@ -12,10 +13,12 @@ const CourseCard = ({ course }: CourseCardProps) => {
       <div className="flex w-full select-none flex-col overflow-hidden rounded-[10px] bg-white shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A] transition-transform duration-300 hover:-translate-y-1 sm:w-[329.66px] h-[405px]">
         {/* Thumbnail */}
         <div className="relative h-[200px] w-full overflow-hidden">
-          <img
+          <Image
             src={course.thumbnail}
             alt={course.title}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized={course.thumbnail.includes("unsplash")}
           />
           <div className="absolute top-2 right-2">
             <span className="rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold text-[#101828] backdrop-blur-sm border border-gray-100">
@@ -38,7 +41,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
             <p className="text-[12px] text-gray-500">
               Instructor:{" "}
               <span className="font-semibold text-gray-700">
-                {course.instructor.name}
+                {course.instructor}
               </span>
             </p>
           </div>
@@ -59,9 +62,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span className="text-[12px] font-medium">
-                {course.durationInWeeks} weeks
-              </span>
+              <span className="text-[12px] font-medium">{course.duration}</span>
             </div>
 
             <div className="flex items-center gap-1.5 text-gray-500">
@@ -79,7 +80,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
                 />
               </svg>
               <span className="text-[12px] font-medium">
-                {course.studentCount.toLocaleString()}
+                {course.enrolled.toLocaleString()}
               </span>
             </div>
 

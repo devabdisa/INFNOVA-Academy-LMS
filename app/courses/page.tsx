@@ -2,110 +2,13 @@ import React from "react";
 import CourseCard from "../_components/CourseCard";
 import Navbar from "../_components/Navbar";
 import Footer from "../_components/Footer";
-import { Course } from "@/types/course";
+import { getCourses } from "@/lib/api";
 
-const mockCourses: Course[] = [
-  {
-    id: "1",
-    title: "Full Stack Web Development Bootcamp",
-    thumbnail:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
-    category: "Web Development",
-    level: "Intermediate",
-    rating: 4.9,
-    studentCount: 3124,
-    durationInWeeks: 12,
-    instructor: { id: "1", name: "Lidetu Tadesse", avatar: "" },
-  },
-  {
-    id: "2",
-    title: "Practical Machine Learning",
-    thumbnail:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1000&auto=format&fit=crop",
-    category: "Data Science",
-    level: "Advanced",
-    rating: 4.8,
-    studentCount: 1742,
-    durationInWeeks: 10,
-    instructor: { id: "2", name: "Bereket Tesfaye", avatar: "" },
-  },
-  {
-    id: "3",
-    title: "UI/UX Design for Modern Products",
-    thumbnail:
-      "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=1000&auto=format&fit=crop",
-    category: "Design",
-    level: "Beginner",
-    rating: 4.7,
-    studentCount: 2691,
-    durationInWeeks: 8,
-    instructor: { id: "3", name: "Hana Alemayehu", avatar: "" },
-  },
-  {
-    id: "4",
-    title: "Cloud Engineering with AWS",
-    thumbnail:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
-    category: "Cloud Computing",
-    level: "Intermediate",
-    rating: 4.6,
-    studentCount: 2015,
-    durationInWeeks: 9,
-    instructor: { id: "4", name: "Samuel Getachew", avatar: "" },
-  },
-  {
-    id: "5",
-    title: "Mobile App Development with Flutter",
-    thumbnail:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
-    category: "Mobile Development",
-    level: "Intermediate",
-    rating: 4.9,
-    studentCount: 2583,
-    durationInWeeks: 10,
-    instructor: { id: "5", name: "Natnael Desta", avatar: "" },
-  },
-  {
-    id: "6",
-    title: "Cybersecurity Foundations",
-    thumbnail:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
-    category: "Security",
-    level: "Beginner",
-    rating: 4.7,
-    studentCount: 1489,
-    durationInWeeks: 8,
-    instructor: { id: "6", name: "Meklit Girma", avatar: "" },
-  },
-  {
-    id: "7",
-    title: "Data Analytics with Python",
-    thumbnail:
-      "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=1000&auto=format&fit=crop",
-    category: "Data Science",
-    level: "Beginner",
-    rating: 4.8,
-    studentCount: 2874,
-    durationInWeeks: 7,
-    instructor: { id: "7", name: "Abel Hailu", avatar: "" },
-  },
-  {
-    id: "8",
-    title: "Blockchain & Fintech Systems",
-    thumbnail:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop",
-    category: "Blockchain",
-    level: "Advanced",
-    rating: 4.5,
-    studentCount: 1321,
-    durationInWeeks: 11,
-    instructor: { id: "8", name: "Yonas Bekele", avatar: "" },
-  },
-];
+export default async function CoursesPage() {
+  const courses = await getCourses();
 
-export default function CoursesPage() {
   return (
-    <div className="mx-auto w-[1101px] min-h-[2234px] bg-gray-50 border-x border-gray-100">
+    <div className="mx-auto w-[1101px] min-h-[2234px] bg-gray-50 border-x border-gray-100 flex flex-col">
       <Navbar />
 
       {/* Hero Section */}
@@ -152,14 +55,14 @@ export default function CoursesPage() {
       </section>
 
       {/* Course Grid */}
-      <section className="py-12 w-full px-8">
+      <section className="py-12 w-full px-8 flex-1">
         <div className="w-full">
           <p className="mb-8 text-sm font-medium text-gray-500">
-            Showing {mockCourses.length} of {mockCourses.length} courses
+            Showing {courses.length} of {courses.length} courses
           </p>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {mockCourses.map((course) => (
+            {courses.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}
           </div>

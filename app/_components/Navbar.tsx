@@ -9,7 +9,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 h-[80px] w-[1101px] mx-auto border-b border-gray-100 bg-white shadow-sm">
       <div className="relative flex h-full w-full items-center justify-between px-[32px]">
         {/* Logo */}
-        <Link href="/" className="inline-block pt-[4px]">
+        <Link href="/" className="inline-block pt-[20px] pb-[28px]">
           <Image
             src="/logo.png"
             alt="INFNOVA Academy"
@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-[32px] md:flex">
           <Link
             href="/courses"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
@@ -42,12 +42,12 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Actions - Enroll Now button positioning */}
-        <div className="flex items-center gap-[16px] w-[209.28px]">
-          <button className="flex h-[40px] w-[82.39px] items-center justify-center text-sm font-bold text-[#F54900] hover:opacity-80">
-            Sign in
+        {/* Actions - precise widths and gaps */}
+        <div className="flex items-center gap-[16px] w-[209.28px] h-[40px]">
+          <button className="flex h-[40px] w-[82.39px] items-center justify-center text-[16px] font-medium text-[#F54900] hover:opacity-80">
+            Sign In
           </button>
-          <button className="flex h-[40px] w-[110.89px] items-center justify-center rounded-[10px] bg-[#F54900] text-sm font-bold text-white transition-all hover:bg-[#d43f00] active:scale-95 shadow-md">
+          <button className="flex h-[40px] w-[110.89px] items-center justify-center rounded-[10px] bg-[#F54900] text-[16px] font-medium text-white transition-all hover:bg-[#d43f00] active:scale-95 shadow-md">
             Enroll Now
           </button>
         </div>
